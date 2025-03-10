@@ -43,23 +43,23 @@ def analizar_archivo(filename, firmas):
 
 # Función principal del antivirus
 def main():
-    # Cargar firmas desde el archivo
-    signatures_file = 'signatures.txt'
+    # Pedir la ruta del archivo de firmas
+    signatures_file = input("Ingrese la ruta del archivo de firmas: ")
     firmas = cargar_firmas(signatures_file)
     
     if not firmas:
         print("No se encontraron firmas válidas. El antivirus no puede funcionar correctamente.")
         return
     
-    # Ruta de la carpeta a analizar
-    folder_path = r'C:\\Users\\The Brothers\\Documents\\PROGRAMAS_DE_PYTHON\\'
-
+    # Pedir la ruta del archivo a analizar
+    file_path = input("Ingrese la ruta del archivo a analizar: ")
     
-    # Analizar archivos en la carpeta
-    for filename in os.listdir(folder_path):
-        file_path = os.path.join(folder_path, filename)
-        if os.path.isfile(file_path):
-            analizar_archivo(file_path, firmas)
+    if not os.path.isfile(file_path):
+        print("El archivo especificado no existe.")
+        return
+    
+    # Analizar el archivo proporcionado
+    analizar_archivo(file_path, firmas)
 
 # Ejecutar el programa principal
 if __name__ == "__main__":
